@@ -1,13 +1,13 @@
 # Import required libraries
 import pandas as pd
 import dash
-import dash_html_components as html
-import dash_core_components as dcc
+from dash import html
+from dash import dcc
 from dash.dependencies import Input, Output
 import plotly.express as px
 
 # Read the airline data into pandas dataframe
-spacex_df = pd.read_csv("spacex_launch_dash.csv")
+spacex_df = pd.read_csv("csv_data/spacex_launch_dash.csv")
 max_payload = spacex_df['Payload Mass (kg)'].max()
 min_payload = spacex_df['Payload Mass (kg)'].min()
 
@@ -109,7 +109,10 @@ def get_scatter_chart(entered_site, selected_range):
 
 # Run the app
 if __name__ == '__main__':
-    app.run_server()
+    # Port for the app
+    port = 8050
+    # Run on local server
+    app.run_server(port=port, debug=True)
 
 
 # Which site has the largest number of successful launches?
